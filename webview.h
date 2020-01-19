@@ -2253,9 +2253,9 @@ WEBVIEW_API void webview_terminate(struct webview *w) {
 }
 
 WEBVIEW_API void webview_exit(struct webview *w) {
-  id app = objc_msgSend((id)objc_getClass("NSApplication"),
-                        sel_registerName("sharedApplication"));
-  objc_msgSend(app, sel_registerName("terminate:"), app);
+  //id app = objc_msgSend((id)objc_getClass("NSApplication"),
+  //                      sel_registerName("sharedApplication"));
+  //objc_msgSend(app, sel_registerName("terminate:"), app);
 }
 
 WEBVIEW_API void webview_print_log(const char *s) { printf("%s\n", s); }
