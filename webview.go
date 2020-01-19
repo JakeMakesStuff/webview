@@ -95,6 +95,11 @@ static inline void _webview_dispatch_cb(struct webview *w, void *arg) {
 static inline void CgoWebViewDispatch(void *w, uintptr_t arg) {
 	webview_dispatch((struct webview *)w, _webview_dispatch_cb, (void *)arg);
 }
+
+static inline int CgoWebViewShouldExit(void *w) {
+	struct webview* view = (struct webview *)w;
+	return view->priv.should_exit == 1;
+}
 */
 import "C"
 import (
@@ -308,6 +313,11 @@ func (w *webview) Loop(blocking bool) bool {
 		block = 1
 	}
 	return C.CgoWebViewLoop(w.w, block) == 0
+}
+
+// ShouldExit is used to check if the WebView should exit.
+func (w *webview) ShouldExit() bool {
+	return C.CgoWebViewShouldExit(w.w) == 1
 }
 
 func (w *webview) Run() {
