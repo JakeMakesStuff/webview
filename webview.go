@@ -233,6 +233,8 @@ type WebView interface {
 	// Bind() returns a function that updates JavaScript object with the current
 	// Go value. You only need to call it if you change Go value asynchronously.
 	Bind(name string, v interface{}) (sync func(), err error)
+	// ShouldExit() is used to check if the WebView should exit.
+	ShouldExit() bool
 }
 
 // DialogType is an enumeration of all supported system dialog types
